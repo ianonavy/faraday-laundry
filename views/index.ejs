@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/style.css' />
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/controllers.js"></script>
+  </head>
+  <body ng-app=faradayLaundry>
+    <!-- Declare a new AngularJS app and associate the controller -->
+	<form ng-controller="OrderFormController">
+	    <h1><%= title %></h1>
+	    <p class="last-updated">Last updated: {{ last_updated }}</p>
+		<ul>
+			<!-- Loop through the machines array, assign a click handler, and set or
+				remove the "active" css class if needed -->
+			<li ng-repeat="machine in machines" ng-click="toggleStatus(machine)" ng-class="{available:machine.status == 'available', broken:machine.status == 'broken'}">
+				{{ machine.name }}
+			</li>
+		</ul>
+
+	</form>
+  </body>
+</html>
